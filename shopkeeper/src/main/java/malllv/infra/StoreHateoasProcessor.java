@@ -12,6 +12,29 @@ public class StoreHateoasProcessor
 
     @Override
     public EntityModel<Store> process(EntityModel<Store> model) {
+        model.add(
+            Link
+                .of(
+                    model.getRequiredLink("self").getHref() + "/completecooking"
+                )
+                .withRel("completecooking")
+        );
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/acceptorder")
+                .withRel("acceptorder")
+        );
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/rejectorder")
+                .withRel("rejectorder")
+        );
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/startcooking")
+                .withRel("startcooking")
+        );
+
         return model;
     }
 }

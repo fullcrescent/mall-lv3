@@ -7,7 +7,7 @@ import malllv.infra.AbstractEvent;
 
 @Data
 @ToString
-public class CookingCompleted extends AbstractEvent {
+public class StoreCookingCompleted extends AbstractEvent {
 
     private Long id;
     private Long orderId;

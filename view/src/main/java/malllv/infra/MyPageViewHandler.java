@@ -41,15 +41,15 @@ public class MyPageViewHandler {
 
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void whenCookingCompleted_then_UPDATE_1(@Payload CookingCompleted cookingCompleted) {
+    public void whenStoreCookingCompleted_then_UPDATE_1(@Payload StoreCookingCompleted storeCookingCompleted) {
         try {
-            if (!cookingCompleted.validate()) return;
+            if (!storeCookingCompleted.validate()) return;
                 // view 객체 조회
 
-                List<MyPage> myPageList = myPageRepository.findByOrderId(cookingCompleted.getOrderId());
+                List<MyPage> myPageList = myPageRepository.findByOrderId(storeCookingCompleted.getOrderId());
                 for(MyPage myPage : myPageList){
                     // view 객체에 이벤트의 eventDirectValue 를 set 함
-                    myPage.setStoreId(cookingCompleted.getId());
+                    myPage.setStoreId(storeCookingCompleted.getId());
                     myPage.setStatus(Cooking Complete);
                 // view 레파지 토리에 save
                 myPageRepository.save(myPage);

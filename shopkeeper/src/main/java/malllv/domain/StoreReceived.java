@@ -1,11 +1,13 @@
 package malllv.domain;
 
 import java.util.*;
-import lombok.Data;
+import lombok.*;
+import malllv.domain.*;
 import malllv.infra.AbstractEvent;
 
 @Data
-public class CookingCompleted extends AbstractEvent {
+@ToString
+public class StoreReceived extends AbstractEvent {
 
     private Long id;
     private Long orderId;
@@ -13,4 +15,12 @@ public class CookingCompleted extends AbstractEvent {
     private Integer qty;
     private Integer price;
     private String status;
+
+    public StoreReceived(Store aggregate) {
+        super(aggregate);
+    }
+
+    public StoreReceived() {
+        super();
+    }
 }

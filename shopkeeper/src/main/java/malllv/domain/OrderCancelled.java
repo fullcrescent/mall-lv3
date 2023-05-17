@@ -7,20 +7,10 @@ import malllv.infra.AbstractEvent;
 
 @Data
 @ToString
-public class OrderReceived extends AbstractEvent {
+public class OrderCancelled extends AbstractEvent {
 
     private Long id;
-    private Long orderId;
     private String product;
     private Integer qty;
     private Integer price;
-    private String status;
-
-    public OrderReceived(Store aggregate) {
-        super(aggregate);
-    }
-
-    public OrderReceived() {
-        super();
-    }
 }

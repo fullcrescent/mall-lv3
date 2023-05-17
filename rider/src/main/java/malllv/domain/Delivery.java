@@ -6,8 +6,6 @@ import javax.persistence.*;
 import lombok.Data;
 import malllv.RiderApplication;
 import malllv.domain.DeliveryAdded;
-import malllv.domain.DeliveryCompleted;
-import malllv.domain.DeliveryStarted;
 
 @Entity
 @Table(name = "Delivery_table")
@@ -32,12 +30,6 @@ public class Delivery {
 
     @PostPersist
     public void onPostPersist() {
-        DeliveryStarted deliveryStarted = new DeliveryStarted(this);
-        deliveryStarted.publishAfterCommit();
-
-        DeliveryCompleted deliveryCompleted = new DeliveryCompleted(this);
-        deliveryCompleted.publishAfterCommit();
-
         DeliveryAdded deliveryAdded = new DeliveryAdded(this);
         deliveryAdded.publishAfterCommit();
     }
@@ -49,7 +41,19 @@ public class Delivery {
         return deliveryRepository;
     }
 
-    public static void addDelivery(CookingCompleted cookingCompleted) {
+    public void startDelivery() {
+        DeliveryStarted deliveryStarted = new DeliveryStarted(this);
+        deliveryStarted.publishAfterCommit();
+    }
+
+    public void completeDelivery() {
+        DeliveryCompleted deliveryCompleted = new DeliveryCompleted(this);
+        deliveryCompleted.publishAfterCommit();
+    }
+
+    public static void addDelivery(
+        StoreCookingCompleted storeCookingCompleted
+    ) {
         /** Example 1:  new item 
         Delivery delivery = new Delivery();
         repository().save(delivery);
@@ -60,7 +64,7 @@ public class Delivery {
 
         /** Example 2:  finding and process
         
-        repository().findById(cookingCompleted.get???()).ifPresent(delivery->{
+        repository().findById(storeCookingCompleted.get???()).ifPresent(delivery->{
             
             delivery // do something
             repository().save(delivery);

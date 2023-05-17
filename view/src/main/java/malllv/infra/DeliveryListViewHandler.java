@@ -17,21 +17,21 @@ public class DeliveryListViewHandler {
     private DeliveryListRepository deliveryListRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void whenCookingCompleted_then_CREATE_1(
-        @Payload CookingCompleted cookingCompleted
+    public void whenStoreCookingCompleted_then_CREATE_1(
+        @Payload StoreCookingCompleted storeCookingCompleted
     ) {
         try {
-            if (!cookingCompleted.validate()) return;
+            if (!storeCookingCompleted.validate()) return;
 
             // view 객체 생성
             DeliveryList deliveryList = new DeliveryList();
             // view 객체에 이벤트의 Value 를 set 함
-            deliveryList.setStoreId(cookingCompleted.getId());
-            deliveryList.setOrderId(cookingCompleted.getOrderId());
-            deliveryList.setProduct(cookingCompleted.getProduct());
-            deliveryList.setQty(cookingCompleted.getQty());
-            deliveryList.setPrice(cookingCompleted.getPrice());
-            deliveryList.setStatus(cookingCompleted.getStatus());
+            deliveryList.setStoreId(storeCookingCompleted.getId());
+            deliveryList.setOrderId(storeCookingCompleted.getOrderId());
+            deliveryList.setProduct(storeCookingCompleted.getProduct());
+            deliveryList.setQty(storeCookingCompleted.getQty());
+            deliveryList.setPrice(storeCookingCompleted.getPrice());
+            deliveryList.setStatus(storeCookingCompleted.getStatus());
             // view 레파지 토리에 save
             deliveryListRepository.save(deliveryList);
         } catch (Exception e) {

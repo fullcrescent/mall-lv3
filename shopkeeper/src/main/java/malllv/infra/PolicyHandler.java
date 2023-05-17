@@ -26,15 +26,31 @@ public class PolicyHandler {
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='OrderPlaced'"
     )
-    public void wheneverOrderPlaced_ReceiveOrder(
+    public void wheneverOrderPlaced_ReceiveStore(
         @Payload OrderPlaced orderPlaced
     ) {
         OrderPlaced event = orderPlaced;
         System.out.println(
-            "\n\n##### listener ReceiveOrder : " + orderPlaced + "\n\n"
+            "\n\n##### listener ReceiveStore : " + orderPlaced + "\n\n"
         );
 
         // Sample Logic //
-        Store.receiveOrder(event);
+        Store.receiveStore(event);
+    }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='OrderCancelled'"
+    )
+    public void wheneverOrderCancelled_CancelStore(
+        @Payload OrderCancelled orderCancelled
+    ) {
+        OrderCancelled event = orderCancelled;
+        System.out.println(
+            "\n\n##### listener CancelStore : " + orderCancelled + "\n\n"
+        );
+
+        // Sample Logic //
+        Store.cancelStore(event);
     }
 }

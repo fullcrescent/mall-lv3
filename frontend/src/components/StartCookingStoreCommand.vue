@@ -2,7 +2,7 @@
 
     <v-card outlined>
         <v-card-title>
-            StartCooking
+            StartCookingStore
         </v-card-title>
 
         <v-card-text>
@@ -13,9 +13,9 @@
             <v-btn
                     color="deep-purple lighten-2"
                     text
-                    @click="startCooking"
+                    @click="startCookingStore"
             >
-                StartCooking
+                StartCookingStore
             </v-btn>
             
             <v-btn
@@ -33,7 +33,7 @@
 <script>
    
     export default {
-        name: 'StartCookingCommand',
+        name: 'StartCookingStoreCommand',
         components:{},
         props: {},
         data: () => ({
@@ -45,8 +45,8 @@
         watch: {
         },
         methods: {
-            startCooking() {
-                this.$emit('startCooking', this.value);
+            startCookingStore() {
+                this.$emit('startCookingStore', this.value);
             },
             close() {
                 this.$emit('closeDialog');

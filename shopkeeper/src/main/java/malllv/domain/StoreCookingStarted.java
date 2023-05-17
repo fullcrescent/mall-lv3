@@ -7,7 +7,7 @@ import malllv.infra.AbstractEvent;
 
 @Data
 @ToString
-public class CookingStarted extends AbstractEvent {
+public class StoreCookingStarted extends AbstractEvent {
 
     private Long id;
     private Long orderId;
@@ -16,11 +16,11 @@ public class CookingStarted extends AbstractEvent {
     private Integer price;
     private String status;
 
-    public CookingStarted(Store aggregate) {
+    public StoreCookingStarted(Store aggregate) {
         super(aggregate);
     }
 
-    public CookingStarted() {
+    public StoreCookingStarted() {
         super();
     }
 }

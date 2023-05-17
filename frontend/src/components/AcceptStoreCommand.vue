@@ -2,7 +2,7 @@
 
     <v-card outlined>
         <v-card-title>
-            AcceptOrder
+            AcceptStore
         </v-card-title>
 
         <v-card-text>
@@ -13,9 +13,9 @@
             <v-btn
                     color="deep-purple lighten-2"
                     text
-                    @click="acceptOrder"
+                    @click="acceptStore"
             >
-                AcceptOrder
+                AcceptStore
             </v-btn>
             
             <v-btn
@@ -33,7 +33,7 @@
 <script>
    
     export default {
-        name: 'AcceptOrderCommand',
+        name: 'AcceptStoreCommand',
         components:{},
         props: {},
         data: () => ({
@@ -45,8 +45,8 @@
         watch: {
         },
         methods: {
-            acceptOrder() {
-                this.$emit('acceptOrder', this.value);
+            acceptStore() {
+                this.$emit('acceptStore', this.value);
             },
             close() {
                 this.$emit('closeDialog');

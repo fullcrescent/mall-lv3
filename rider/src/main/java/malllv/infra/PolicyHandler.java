@@ -24,14 +24,14 @@ public class PolicyHandler {
 
     @StreamListener(
         value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='CookingCompleted'"
+        condition = "headers['type']=='StoreCookingCompleted'"
     )
-    public void wheneverCookingCompleted_AddDelivery(
-        @Payload CookingCompleted cookingCompleted
+    public void wheneverStoreCookingCompleted_AddDelivery(
+        @Payload StoreCookingCompleted storeCookingCompleted
     ) {
-        CookingCompleted event = cookingCompleted;
+        StoreCookingCompleted event = storeCookingCompleted;
         System.out.println(
-            "\n\n##### listener AddDelivery : " + cookingCompleted + "\n\n"
+            "\n\n##### listener AddDelivery : " + storeCookingCompleted + "\n\n"
         );
 
         // Sample Logic //
