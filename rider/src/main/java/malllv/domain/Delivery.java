@@ -28,12 +28,6 @@ public class Delivery {
 
     private String status;
 
-    @PostPersist
-    public void onPostPersist() {
-        DeliveryAdded deliveryAdded = new DeliveryAdded(this);
-        deliveryAdded.publishAfterCommit();
-    }
-
     public static DeliveryRepository repository() {
         DeliveryRepository deliveryRepository = RiderApplication.applicationContext.getBean(
             DeliveryRepository.class
@@ -42,11 +36,13 @@ public class Delivery {
     }
 
     public void startDelivery() {
+        this.setStatus("startDelivery");
         DeliveryStarted deliveryStarted = new DeliveryStarted(this);
         deliveryStarted.publishAfterCommit();
     }
 
     public void completeDelivery() {
+        this.setStatus("completeDelivery");
         DeliveryCompleted deliveryCompleted = new DeliveryCompleted(this);
         deliveryCompleted.publishAfterCommit();
     }
@@ -54,26 +50,18 @@ public class Delivery {
     public static void addDelivery(
         StoreCookingCompleted storeCookingCompleted
     ) {
-        /** Example 1:  new item 
         Delivery delivery = new Delivery();
+
+        delivery.setStoreId(storeCookingCompleted.getId());
+        delivery.setOrderId(storeCookingCompleted.getOrderId());
+        delivery.setProduct(storeCookingCompleted.getProduct());
+        delivery.setQty(storeCookingCompleted.getQty());
+        delivery.setPrice(storeCookingCompleted.getPrice());
+        delivery.setStatus("waitDelivery");
+
         repository().save(delivery);
 
         DeliveryAdded deliveryAdded = new DeliveryAdded(delivery);
         deliveryAdded.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(storeCookingCompleted.get???()).ifPresent(delivery->{
-            
-            delivery // do something
-            repository().save(delivery);
-
-            DeliveryAdded deliveryAdded = new DeliveryAdded(delivery);
-            deliveryAdded.publishAfterCommit();
-
-         });
-        */
-
     }
 }
