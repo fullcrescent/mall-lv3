@@ -30,7 +30,7 @@ public class MyPageViewHandler {
             myPage.setProduct(orderPlaced.getProduct());
             myPage.setQty(orderPlaced.getQty());
             myPage.setPrice(orderPlaced.getPrice());
-            myPage.setStatus(Order Start);
+            myPage.setStatus("Order Start");
             // view 레파지 토리에 save
             myPageRepository.save(myPage);
 
@@ -50,7 +50,7 @@ public class MyPageViewHandler {
                 for(MyPage myPage : myPageList){
                     // view 객체에 이벤트의 eventDirectValue 를 set 함
                     myPage.setStoreId(storeCookingCompleted.getId());
-                    myPage.setStatus(Cooking Complete);
+                    myPage.setStatus("Cooking Complete");
                 // view 레파지 토리에 save
                 myPageRepository.save(myPage);
                 }
@@ -69,7 +69,7 @@ public class MyPageViewHandler {
                 for(MyPage myPage : myPageList){
                     // view 객체에 이벤트의 eventDirectValue 를 set 함
                     myPage.setDeliveryId(deliveryCompleted.getId());
-                    myPage.setStatus(Delivery Complete);
+                    myPage.setStatus("Delivery Complete");
                 // view 레파지 토리에 save
                 myPageRepository.save(myPage);
                 }

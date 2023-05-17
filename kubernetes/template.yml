@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: front
-          image: username/front:latest
+          image: fullcrescent/front:v1
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: shopkeeper
-          image: username/shopkeeper:latest
+          image: fullcrescent/shopkeeper:v1
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -98,7 +98,7 @@ spec:
     spec:
       containers:
         - name: rider
-          image: username/rider:latest
+          image: fullcrescent/rider:v1
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -138,7 +138,7 @@ spec:
     spec:
       containers:
         - name: view
-          image: username/view:latest
+          image: fullcrescent/view:v1
           ports:
             - containerPort: 8080
           readinessProbe:
