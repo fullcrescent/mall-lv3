@@ -27,7 +27,7 @@
 ![image](https://github.com/fullcrescent/mall-lv3/assets/53729857/56f08333-fc1b-479c-a40b-8ca0ff960681)
 
 ## 4. Zero downtime Deployment
-1. siege pod 실행 및 접속
+- siege pod 실행 및 접속
 ```
 kubectl apply -f - <<EOF
 apiVersion: v1
@@ -44,7 +44,8 @@ kubectl exec -it siege -- /bin/bash
 ```
 ![image](https://github.com/fullcrescent/mall-lv3/assets/53729857/f6c84b50-b831-4ee0-98db-e930935e2218)
 
-2. 무중단 배포 설정 없이 할 경우
+무중단 배포 설정 추가X
 ![image](https://github.com/fullcrescent/mall-lv3/assets/53729857/e3924d9a-65dc-419b-86a6-964285eaabc7)
 
-
+무중단 배포 설정 추가O
+![image](https://github.com/fullcrescent/mall-lv3/assets/53729857/50f9a616-0803-42a7-8ad4-b461ffb4cc57)
